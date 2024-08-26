@@ -36,20 +36,10 @@ public class CurrencyExchangeService {
           .convertedAmount(convertedAmount)
           .conversionDate(LocalDateTime.now())
           .build();
+
       return currencyExchangeRepository.save(currencyExchangeData);
     } else {
       throw new ExchangeRateException(sourceCurrency, targetCurrency);
     }
-  }
-
-  public CurrencyExchange updateExchangeRate(Long id, CurrencyExchange newRate) {
-    return currencyExchangeRepository.findById(id).map(rate -> {
-      rate.setSourceCurrency(newRate.getSourceCurrency());
-      rate.setTargetCurrency(newRate.getTargetCurrency());
-      rate.setRate(newRate.getRate());
-      rate.setOriginalAmount(newRate.getOriginalAmount());
-      rate.setConvertedAmount(newRate.getConvertedAmount());
-      return currencyExchangeRepository.save(rate);
-    }).orElseThrow(() -> new IllegalArgumentException("Tipo de cambio no encontrado"));
   }
 }
