@@ -16,21 +16,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @Entity
 @Builder
-public class CurrencyExchange {
+public class FileMetadata {
 
   @Id
-  private Integer idCurrency;
+  private String id;
 
-  private String sourceCurrency;
+  private String fileName;
 
-  private String targetCurrency;
+  private String fileExtension;
 
-  private double rate;
+  private LocalDateTime uploadDate;
 
-  private double originalAmount;
-
-  private double convertedAmount;
-
-  private LocalDateTime conversionDate;
+  private long fileSize;
 
 }
